@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph">
+
+
+
+    <fragment
+        android:id="@+id/nav_Home"
+        android:name="com.example.membersofparlament.Home"
+        android:label="Home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_nav_Home_to_nav_Party2"
+            app:destination="@id/nav_Party" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_Party"
+        android:name="com.example.membersofparlament.Party"
+        android:label="Party"
+        tools:layout="@layout/fragment_party" >
+        <action
+            android:id="@+id/action_nav_Party_to_nav_member"
+            app:destination="@id/nav_member" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_member"
+        android:name="com.example.membersofparlament.Member"
+        android:label="Member"
+        tools:layout="@layout/fragment_member"
+        />
+
+
+</navigation>
