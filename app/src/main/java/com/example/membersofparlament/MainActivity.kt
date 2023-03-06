@@ -1,5 +1,13 @@
 package com.example.membersofparlament
 
+/*
+6.3.2022
+Niilo Urpola
+2217663
+ */
+// Main activity for the app that contains the navigation controller and the app context
+
+
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

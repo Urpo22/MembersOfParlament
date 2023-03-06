@@ -26,8 +26,6 @@ data class Kansanedustaja(
     val bornYear: Int,
     val twitter: String,
 
-
-
 ) : Parcelable
 
 @Dao interface OpsLogDAO {

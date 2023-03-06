@@ -1,5 +1,13 @@
 package com.example.membersofparlament.network
 
+/*
+6.3.2022
+Niilo Urpola
+2217663
+ */
+// membersOfParliamentApiService is used to get the data from the API
+// The data is parsed to the PMember data class
+
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import retrofit2.Retrofit

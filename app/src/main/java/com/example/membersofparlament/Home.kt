@@ -1,5 +1,14 @@
-
 package com.example.membersofparlament
+
+/*
+6.3.2022
+Niilo Urpola
+2217663
+ */
+// Home fragment that contains the search bar
+// The search bar is used to search for a party and the button navigates to the party fragment
+// The party name is passed to the party fragment as an argument
+
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -12,11 +21,6 @@ import androidx.navigation.fragment.findNavController
 import com.example.membersofparlament.HomeDirections.Companion.actionNavHomeToNavParty2
 import com.example.membersofparlament.databinding.FragmentHomeBinding
 
-/**
- * A simple [Fragment] subclass.
- * Use the [Home.newInstance] factory method to
- * create an instance of this fragment.
- */
 class Home : Fragment() {
 
 private lateinit var binding: FragmentHomeBinding
@@ -32,11 +36,9 @@ private lateinit var binding: FragmentHomeBinding
 
 
         binding.button.setOnClickListener{
-            // vaihtoehdot kd, kesk, kok, liik, ps, r , sd, vas, vihr, vkk, wr
             // jos puoluetta ei ole, näytetään virheilmoitus
             val userInput = binding.editTextInput.text.toString()
                 if (userInput == "kd" || userInput == "kesk" || userInput == "kok" || userInput == "liik" || userInput == "ps" || userInput == "r" || userInput == "sd" || userInput == "vas" || userInput == "vihr" || userInput == "vkk" || userInput == "wr") {
-            //      if (userInput.equals("kd") || userInput.equals("kesk") || userInput.equals("kok") || userInput.equals("liik") || userInput.equals("ps") || userInput.equals("r") || userInput.equals("sd") || userInput.equals("vas") || userInput.equals("vihr") || userInput.equals("vkk") || userInput.equals("wr")) {
                     findNavController().navigate(actionNavHomeToNavParty2(userInput))
                     getHomeInput(userInput)
                     Log.d("Test", "User input: $userInput")
@@ -51,9 +53,7 @@ override fun onCreateView(
     inflater: LayoutInflater, container: ViewGroup?,
     savedInstanceState: Bundle?
 ): View? {
-    // Inflate the layout for this fragment
     binding = FragmentHomeBinding.inflate(inflater, container, false)
-
     return binding.root
 }
     fun getHomeInput(HomeuserInput : String): String {

@@ -1,5 +1,11 @@
 package com.example.membersofparlament.network
-
+/*
+6.3.2022
+Niilo Urpola
+2217663
+ */
+// Data class for the members of parliament
+// The data class is used to parse the JSON data from the API
 
 data class PMember (
     val lastname: String,

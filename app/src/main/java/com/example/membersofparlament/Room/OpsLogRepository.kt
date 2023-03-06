@@ -1,5 +1,14 @@
 package com.example.membersofparlament.Room
 
+/*
+6.3.2022
+Niilo Urpola
+2217663
+ */
+// KananedustajaDB is the database for the app that contains the DAO
+// The database is used to store the data from the API
+
+
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.asFlow
 import androidx.lifecycle.asLiveData

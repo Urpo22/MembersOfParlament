@@ -1,5 +1,14 @@
 package com.example.membersofparlament
 
+/*
+6.3.2022
+Niilo Urpola
+2217663
+ */
+// Fragment for the party list that shows the list of members of parliament from the selected party
+// The list is filtered by the party name that is passed from the home fragment
+// The list is shown in a recycler view
+
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
@@ -46,14 +55,16 @@ class Party : Fragment() {
             }
         }
         return binding.root
+    }
 }
-}
+
+// Adapter for the recycler view
+// The adapter is used to show the list of members of parliament from the selected party
+// The list is filtered by the party name that is passed from the home fragment
 
 class ListAdapter : RecyclerView.Adapter<ListAdapter.ViewHolder>() {
 
     private var data = emptyList<Kansanedustaja>()
-
-    // create a variable user input from Home edit text
 
     class ViewHolder(private val binding : ItemBinding) : RecyclerView.ViewHolder(binding.root) {
 
@@ -87,11 +98,9 @@ class ListAdapter : RecyclerView.Adapter<ListAdapter.ViewHolder>() {
             party = SingleItem.party,
             minister = SingleItem.minister,
             pictureUrl = SingleItem.pictureUrl,
-
             twitter = SingleItem.twitter,
             constituency = SingleItem.constituency,
             bornYear = SingleItem.bornYear,
-
         )
         holder.bind(pMember)
     }
