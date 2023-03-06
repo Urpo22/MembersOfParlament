@@ -2,24 +2,28 @@ package com.example.membersofparlament
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.membersofparlament.Overview.ListViewModel
-import com.example.membersofparlament.Room.Kansanedustaja
 import com.example.membersofparlament.databinding.FragmentPartyBinding
 import com.example.membersofparlament.databinding.ItemBinding
-import com.example.membersofparlament.network.PMember
+import com.example.membersofparlament.Room.Kansanedustaja
+
 
 class Party : Fragment() {
 
 
     private lateinit var binding: FragmentPartyBinding
     private val viewModel : ListViewModel by viewModels()
+    private val homeUserInput: PartyArgs by navArgs()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,26 +41,32 @@ class Party : Fragment() {
 
         viewModel.LogData.observe(viewLifecycleOwner) {
             it?.let {
-                adapter.setData(it)
+                adapter.setData(it.filter { entry -> entry.party == homeUserInput.userInput })
+                Log.d("Test", "Filter User input: ${homeUserInput.userInput}")
             }
         }
-
         return binding.root
-    }
-
+}
 }
 
 class ListAdapter : RecyclerView.Adapter<ListAdapter.ViewHolder>() {
 
     private var data = emptyList<Kansanedustaja>()
 
-    class ViewHolder(private val binding : ItemBinding) : RecyclerView.ViewHolder(binding.root) {
-    //    val listaRecyclerView: RecyclerView = itemView.findViewById(R.id.RecyclerView_Party)
+    // create a variable user input from Home edit text
 
-        fun bind(pMember: PMember) {
-            binding.party.text = pMember.party
-            binding.first.text = pMember.firstname
-            binding.last.text = pMember.lastname
+    class ViewHolder(private val binding : ItemBinding) : RecyclerView.ViewHolder(binding.root) {
+
+        fun bind(member: Kansanedustaja) {
+
+            binding.party.text = member.party
+            binding.first.text = member.firstname
+            binding.last.text = member.lastname
+
+            binding.root.setOnClickListener {
+                val action = PartyDirections.actionNavPartyToNavMember(member)
+                binding.root.findNavController().navigate(action)
+            }
         }
     }
 
@@ -69,7 +79,7 @@ class ListAdapter : RecyclerView.Adapter<ListAdapter.ViewHolder>() {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val SingleItem = data[position]
-        val pMember = PMember(
+        val pMember = Kansanedustaja(
             lastname = SingleItem.lastname,
             firstname = SingleItem.firstname,
             hetekaId = SingleItem.hetekaId,
@@ -77,8 +87,8 @@ class ListAdapter : RecyclerView.Adapter<ListAdapter.ViewHolder>() {
             party = SingleItem.party,
             minister = SingleItem.minister,
             pictureUrl = SingleItem.pictureUrl,
-        )
 
+        )
         holder.bind(pMember)
     }
 
@@ -90,5 +100,5 @@ class ListAdapter : RecyclerView.Adapter<ListAdapter.ViewHolder>() {
     fun setData(kansanedustaja: List<Kansanedustaja>) {
         this.data = kansanedustaja
         notifyDataSetChanged()
+        }
     }
-}

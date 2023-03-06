@@ -18,7 +18,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <EditText
-        android:id="@+id/editText_Input"
+        android:id="@+id/editTextInput"
         android:layout_width="221dp"
         android:layout_height="57dp"
         android:layout_marginStart="92dp"
@@ -57,6 +57,17 @@
         android:layout_marginTop="64dp"
         android:text="Button"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText_Input" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextInput" />
+
+    <TextView
+        android:id="@+id/textViewError"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="148dp"
+        android:layout_marginTop="64dp"
+        android:text="Virheellinen syöte"
+        android:textColor="#FF0000"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

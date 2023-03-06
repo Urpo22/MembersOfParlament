@@ -22,7 +22,8 @@ object OpsLogRepository {
                  seatNumber = SingleMember.seatNumber,
                  party = SingleMember.party,
                  minister = SingleMember.minister,
-                 pictureUrl = SingleMember.pictureUrl
+                 pictureUrl = SingleMember.pictureUrl,
+
              )
      })
     }

@@ -9,6 +9,7 @@ import retrofit2.http.GET
 private const val BASE_URL =
     "https://users.metropolia.fi/~peterh/"
 
+
 private val moshi = Moshi.Builder()
     .add(KotlinJsonAdapterFactory())
     .build()

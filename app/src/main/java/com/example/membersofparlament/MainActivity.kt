@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.*
+import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.example.membersofparlament.R.id.fragmentContainerView
@@ -19,6 +20,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private lateinit var binding: ActivityMainBinding
+    private lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,25 +33,10 @@ class MainActivity : AppCompatActivity() {
 
         setupActionBarWithNavController(navController)
 
-
     }
 
-/*
-    class MainActivityViewModel : ViewModel() {
-        private val repository = OpsLogRepository
-        val logData: LiveData<List<Kansanedustaja>> = repository.logData
-
-        init {
-            insertOpsLogEntry()
-        }
-
-        fun insertOpsLogEntry() {
-            viewModelScope.launch {
-                repository.newOpsLogEntry()
-            }
-        }
+    override fun onSupportNavigateUp(): Boolean {
+        return navController.navigateUp() || super.onSupportNavigateUp()
     }
-}
 
-*/
 }
