@@ -1,5 +1,12 @@
 package com.example.membersofparlament.Room
 
+/*
+6.3.2022
+Niilo Urpola
+2217663
+ */
+//
+
 import android.os.Parcelable
 import androidx.lifecycle.LiveData
 import androidx.room.*
