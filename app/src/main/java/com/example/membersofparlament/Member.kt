@@ -67,7 +67,19 @@ class Member : Fragment() {
         }
         binding.textViewHeteka.text = args.member.hetekaId.toString()
 
+        binding.textViewBornYear.text = args.member.bornYear.toString()
 
+        if (args.member.constituency == null) {
+            binding.textViewconstituency.text = "Ei tiedossa"
+        } else {
+            binding.textViewconstituency.text = args.member.constituency
+        }
+
+        if (args.member.twitter == null) {
+            binding.textViewtwitter.text = "Ei tiedossa"
+        } else {
+            binding.textViewtwitter.text = args.member.twitter
+        }
 
         return binding.root
     }

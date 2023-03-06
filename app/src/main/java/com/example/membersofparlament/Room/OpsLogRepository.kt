@@ -3,6 +3,7 @@ package com.example.membersofparlament.Room
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.asFlow
 import androidx.lifecycle.asLiveData
+import com.example.membersofparlament.network.PMember
 import com.example.membersofparlament.network.membersOfParliamentApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -14,6 +15,19 @@ object OpsLogRepository {
      suspend fun newOpsLogEntry() {
         withContext(Dispatchers.IO){
          val membersData = membersOfParliamentApi.retrofitService.getMembersOfParliamentList()
+            val extras = membersOfParliamentApi.retrofitService.getExtras().sortedBy { it.hetekaId }
+
+            // Luodaan lisätiedoista Map-objekti hetekaId:n avulla.
+            val extrasMap = extras.associateBy { it.hetekaId }
+
+            // Käydään jäsenet läpi ja lisätään lisätietoa jos saatavilla extra-listasta Map-objektin avulla.
+            for (PMember in membersData) {
+                extrasMap[PMember.hetekaId]?.let { extra ->
+                    PMember.constituency = extra.constituency
+                    PMember.bornYear = extra.bornYear
+                    PMember.twitter = extra.twitter
+                }
+            }
          dao.insert(membersData.map { SingleMember ->
              Kansanedustaja(
                  hetekaId = SingleMember.hetekaId,
@@ -23,7 +37,9 @@ object OpsLogRepository {
                  party = SingleMember.party,
                  minister = SingleMember.minister,
                  pictureUrl = SingleMember.pictureUrl,
-
+                    constituency = SingleMember.constituency,
+                    bornYear = SingleMember.bornYear,
+                    twitter = SingleMember.twitter,
              )
      })
     }

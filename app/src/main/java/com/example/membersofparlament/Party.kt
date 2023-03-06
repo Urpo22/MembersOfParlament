@@ -88,6 +88,10 @@ class ListAdapter : RecyclerView.Adapter<ListAdapter.ViewHolder>() {
             minister = SingleItem.minister,
             pictureUrl = SingleItem.pictureUrl,
 
+            twitter = SingleItem.twitter,
+            constituency = SingleItem.constituency,
+            bornYear = SingleItem.bornYear,
+
         )
         holder.bind(pMember)
     }

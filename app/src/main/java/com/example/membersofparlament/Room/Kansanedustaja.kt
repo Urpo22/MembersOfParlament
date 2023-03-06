@@ -14,14 +14,19 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 @Entity
 data class Kansanedustaja(
-        @PrimaryKey(autoGenerate = false)
-        val hetekaId: Int,
-        val lastname: String,
-        val firstname: String,
-        val seatNumber: Int,
-        val party: String,
-        val minister: Boolean,
-        val pictureUrl: String,
+    @PrimaryKey(autoGenerate = false)
+    val hetekaId: Int,
+    val lastname: String,
+    val firstname: String,
+    val seatNumber: Int,
+    val party: String,
+    val minister: Boolean,
+    val pictureUrl: String,
+    val constituency: String,
+    val bornYear: Int,
+    val twitter: String,
+
+
 
 ) : Parcelable
 
