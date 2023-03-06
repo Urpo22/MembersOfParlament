@@ -37,7 +37,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val navHostFragment = supportFragmentManager.findFragmentById(fragmentContainerView) as NavHostFragment
-        val navController = navHostFragment.navController
+        navController = navHostFragment.navController
 
         setupActionBarWithNavController(navController)
 
